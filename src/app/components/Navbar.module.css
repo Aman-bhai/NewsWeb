@@ -1,0 +1,7 @@
+@media (min-width: 1010px) and (max-width: 1200px) {
+    #imp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
