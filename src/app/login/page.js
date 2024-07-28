@@ -1,11 +1,11 @@
 "use client"
 
 import React from 'react'
-import NextAuth from 'next-auth/next';
 import { signIn, useSession } from 'next-auth/react';
 import { useState } from 'react';
 import PopUp from "@/app/components/PopUp"
 import { useRouter } from 'next/navigation';
+import Link from "next/link"
 
 const page = () => {
 
@@ -44,9 +44,9 @@ const page = () => {
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600 max-w">
             {" "}Or
-            <a href="/register" className="font-medium text-blue-600 hover:text-blue-500 pl-1">
+            <Link href="/register" className="font-medium text-blue-600 hover:text-blue-500 pl-1">
                  create an account
-            </a>
+            </Link>
         </p>
     </div>
 

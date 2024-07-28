@@ -1,11 +1,10 @@
 "use client"
 
 import React from 'react'
-import NextAuth from 'next-auth/next';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
 import { useState } from 'react';
-import PopUp from "@/app/components/PopUp"
 import toast from 'react-hot-toast';
+import Link from "next/link"
 
 const page = () => {
 
@@ -60,14 +59,14 @@ const page = () => {
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600 max-w">
             {" "}Or
-            <a href="/login" className="font-medium text-blue-600 hover:text-blue-500 pl-1">
+            <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500 pl-1">
                  Already Have an Account?
-            </a>
+            </Link>
         </p>
         
       {userCreated && (<div className='my-4 text-center bg-red-500 w-fit text-white mx-auto p-2 px-4 rounded-lg'>
         Now you can
-        <a className="underline" href="/login"> Login &raquo;</a>
+        <Link className="underline" href="/login"> Login &raquo;</Link>
       </div>)}
 
     </div>
