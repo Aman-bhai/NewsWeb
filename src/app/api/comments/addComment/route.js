@@ -12,8 +12,6 @@ export async function POST(req) {
     const { email, comment } = await req.json();
    
     const doc=await Comments.findOne({email})
-    console.log(email,comment)
-    
     if(!doc){
         let date=new Date().toString()
         let data=await Comments.create({

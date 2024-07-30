@@ -57,14 +57,13 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdown]);
+  
 
   useEffect(() => {
-    // Clear search input when the route changes
     setsearch("");
   }, [router.asPath]);
 
   useEffect(() => {
-    // Sync search input with the router query if available
     const query = new URLSearchParams(window.location.search).get('search');
     if (query) {
       setsearch(query);

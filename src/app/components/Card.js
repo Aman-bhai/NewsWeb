@@ -15,7 +15,7 @@ const Card = (props) => {
     "hover:bg-violet-700",
   ];
 
-  const handleCardClick = () => {
+  const handleClick = () => {
     setSelectedNews({ title, image, desc, date, author, url, src_name,content });
     router.push('/newsDetails');
   };
@@ -23,7 +23,7 @@ const Card = (props) => {
   return (
     <div
       className="max-w-sm rounded overflow-hidden shadow-lg md:mx-2 my-2 cursor-pointer"
-      onClick={handleCardClick}
+      onClick={handleClick}
     >
       <div className="flex justify-end">
         <h4
