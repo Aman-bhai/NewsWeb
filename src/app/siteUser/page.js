@@ -28,8 +28,8 @@ const page = () => {
               <img
                 alt=""
                 className="self-center flex-shrink-0 w-24 h-24 mb-4 bg-center bg-cover rounded-full dark:bg-blue-500"
-                src="/avatar-312160_1280.png"
-              />
+                src={`https://avatar.iran.liara.run/username?username=${encodeURIComponent(item.email)}`}
+                />
               <p className="text-xl font-semibold leading-tight">
                 {item.name?item.name:"N/A"}
               </p>

@@ -1,8 +1,12 @@
 "use client";
 
 import { useNews } from "@/app/context/NewsContext";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import PopUp from "./PopUp";
+import toast from "react-hot-toast";
+import Spinner from "./Spinner";
 
 const NewsDetailCard3 = () => {
   const { selectedNews } = useNews();
@@ -15,7 +19,11 @@ const NewsDetailCard3 = () => {
   }, [selectedNews, router]);
 
   if (!selectedNews) {
-    return <div>No news selected</div>;
+    return (
+      <div className="text-center mx-auto">
+        <Spinner />
+      </div>
+    );
   }
 
   const {
@@ -29,10 +37,73 @@ const NewsDetailCard3 = () => {
     content,
   } = selectedNews;
 
+  const session = useSession();
+
+  if (session?.status === "unauthenticated") {
+    return (
+      <PopUp
+        title="Login Required"
+        text="You need to log in to access this page."
+        link="/login"
+        linkText="Login"
+      />
+    );
+  }
+
+  const email = session?.data?.user?.email;
+
+  const [comment, setcomment] = useState("");
+  const [prevComments, setprevComments] = useState([]);
+  const [loading, setloading] = useState(true);
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        setloading(true);
+        const response = await fetch("/api/comments");
+        let data = await response.json();
+        console.log(data);
+        setprevComments(data.Comments);
+        setloading(false);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+      }
+    };
+
+    fetchComments();
+  }, []);
+
+  const postCommentBtn = async (e) => {
+    e.preventDefault();
+
+    const promise = new Promise(async (resolve, reject) => {
+      const response = await fetch("/api/comments/addComment", {
+        method: "POST",
+        body: JSON.stringify({ email, comment }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (response.ok) {
+        resolve();
+      } else {
+        reject();
+      }
+    });
+
+    await toast.promise(promise, {
+      loading: "Uploading...",
+      success: "Comment is Successfully Uploaded!",
+      error: "Error",
+    });
+
+    const data = await response.json();
+    setprevComments((prev) => [...prev, data]);
+    setcomment("");
+  };
+
   return (
     <div className="container mx-auto px-4 py-6 bg-gray-100 rounded-lg shadow-lg">
       <div className="flex flex-col items-center">
-        {/* Image */}
         <div className="relative w-full max-w-screen-md h-80 flex justify-center items-center mb-6">
           <img
             src={!image ? "/assets/general_news.webp" : image}
@@ -41,7 +112,6 @@ const NewsDetailCard3 = () => {
           />
         </div>
 
-        {/* Content */}
         <div className="flex flex-col items-start w-full max-w-screen-md">
           <h1 className="text-4xl font-bold mb-4 text-blue-900">{title}</h1>
           <p className="text-gray-700 mb-4">{desc}</p>
@@ -70,7 +140,7 @@ const NewsDetailCard3 = () => {
             }}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-500 hover:underline text-sm"
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Read more
           </button>
@@ -79,23 +149,26 @@ const NewsDetailCard3 = () => {
       <div className="mt-6 p-6 border-t bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold mb-4 text-gray-800">Comments</h2>
 
-        {/* Previous Comments */}
-        <div className="mb-6">
-          <div className="border-b border-gray-200 pb-4 mb-4">
-            <p className="font-semibold text-gray-800">John Doe</p>
-            <p className="text-gray-700">Great article! Very informative.</p>
-            <p className="text-gray-500 text-sm mt-1">July 29, 2024</p>
-          </div>
-          <div className="border-b border-gray-200 pb-4 mb-4">
-            <p className="font-semibold text-gray-800">Jane Smith</p>
-            <p className="text-gray-700">
-              I found this news to be quite helpful. Thanks for sharing!
-            </p>
-            <p className="text-gray-500 text-sm mt-1">July 28, 2024</p>
-          </div>
-        </div>
+        {!loading &&
+          prevComments.map((item, key) => (
+            <div key={key} className="mb-6 flex mt-2">
+              <div className="flex-shrink-0 flex items-center justify-center">
+                <img
+                  className="h-20 w-20 object-cover rounded-full"
+                  src={`https://avatar.iran.liara.run/username?username=${encodeURIComponent(item.email)}`}
+                  alt="User avatar"
+                />
+              </div>
+              <div className="ml-4 flex flex-col justify-center">
+                <p className="font-semibold text-gray-800">{item.email}</p>
+                <p className="text-gray-700">{item.comment[0]}</p>
+                <p className="text-gray-500 text-sm mt-1">
+                  {new Date(item.date[0]).toLocaleDateString()}
+                </p>
+              </div>
+            </div>
+          ))}
 
-        {/* Add Comment Form */}
         <div>
           <h3 className="text-xl font-semibold mb-4 text-gray-800">
             Add a Comment
@@ -103,8 +176,13 @@ const NewsDetailCard3 = () => {
           <textarea
             className="w-full h-24 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
             placeholder="Write your comment here..."
+            value={comment}
+            onChange={(e) => setcomment(e.target.value)}
           ></textarea>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onClick={postCommentBtn}
+          >
             Post Comment
           </button>
         </div>

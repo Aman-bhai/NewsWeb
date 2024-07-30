@@ -6,7 +6,7 @@ var validateEmail = function(email) {
   return re.test(email)
 };
 
-const UserInfoSchema = new Schema({
+const commentSchema = new Schema({
   email: {
     type: String,
     trim: true,
@@ -16,9 +16,11 @@ const UserInfoSchema = new Schema({
     validate: [validateEmail, 'Please fill a valid email address'],
     match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
   },
-  name: [{ type: String }],
-  message: [{ type: String }],
-  date: [{ type: String, default: Date }]
+  comment: [{ type: String }],
+  date:[ {
+    type: Date,
+    default: Date.now
+  }]
 }, { timestamps: true });
 
-export const Contact = models?.Contact || model('Contact', UserInfoSchema);
+export const Comments = models?.Comments || model('Comments', commentSchema);
