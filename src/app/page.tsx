@@ -5,7 +5,6 @@ export default function Home() {
   
   return (
   <main >
-    <Navbar/>
     <Container API={process.env.API} category={"general"}/>
   </main>
   );

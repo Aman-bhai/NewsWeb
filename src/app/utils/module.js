@@ -22,6 +22,15 @@ const colscheme = (category) => {
 }
 
 
+const colorMap = {
+    red: ["bg-red-500", "hover:bg-red-800"],
+    blue: ["bg-blue-500", "hover:bg-blue-800"],
+    green: ["bg-green-500", "hover:bg-green-800"],
+    yellow: ["bg-yellow-500", "hover:bg-yellow-800"],
+    orange: ["bg-orange-500", "hover:bg-orange-800"],
+    fuchsia: ["bg-fuchsia-500", "hover:bg-fuchsia-800"],
+    indigo: ["bg-indigo-500", "hover:bg-indigo-800"],
+  };
  
 const url ={
     url1: "https://newsapi.org/v2/top-headlines?country=in&category=",
@@ -31,5 +40,6 @@ const url ={
 
 module.exports={
     colscheme:colscheme,
-    link:url
+    link:url,
+    colorMap:colorMap
 }

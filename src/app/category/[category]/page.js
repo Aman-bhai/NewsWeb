@@ -8,7 +8,6 @@ const page = ({ params }) => {
   let color=colscheme(params.category)
   return (
     <>
-    <Navbar/>
     <Container category={params.category} API={process.env.API} color={color} />
     </>
 )
