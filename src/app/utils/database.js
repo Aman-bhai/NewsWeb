@@ -1,26 +1,16 @@
-import { MongoClient } from "mongodb"
+import { MongoClient } from 'mongodb';
 
-if (!process.env.mongoURL) {
-  throw new Error('Invalid/Missing environment variable: "MONGODB_URI"')
-}
+const client = new MongoClient(process.env.MONGODB_URI);
 
-const uri = process.env.mongoURL
-const options = {}
-
-let client
 let clientPromise;
 
-if (process.env.NODE_ENV === "development") {
- 
+if (process.env.NODE_ENV === 'development') {
   if (!global._mongoClientPromise) {
-    client = new MongoClient(uri, options)
-    global._mongoClientPromise = client.connect()
+    global._mongoClientPromise = client.connect();
   }
-  clientPromise = global._mongoClientPromise
+  clientPromise = global._mongoClientPromise;
 } else {
-  client = new MongoClient(uri, options)
-  clientPromise = client.connect()
+  clientPromise = client.connect();
 }
 
-
-export default clientPromise
+export default clientPromise;

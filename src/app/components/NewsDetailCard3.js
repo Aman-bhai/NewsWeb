@@ -85,9 +85,13 @@ const NewsDetailCard3 = () => {
 
       if (response.ok) {
         resolve();
+        const data = await response.json();
+        setprevComments((prev) => [...prev, data]);
+        setcomment("");
       } else {
         reject();
       }
+
     });
 
     await toast.promise(promise, {
@@ -96,9 +100,7 @@ const NewsDetailCard3 = () => {
       error: "Error",
     });
 
-    const data = await response.json();
-    setprevComments((prev) => [...prev, data]);
-    setcomment("");
+   
   };
 
   return (

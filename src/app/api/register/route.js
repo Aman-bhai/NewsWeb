@@ -6,7 +6,7 @@ import bcrypt from "bcrypt"
 export async function POST(req) {
 
     const payload = await req.json();
-    mongoose.connect(process.env.mongoURL);
+    mongoose.connect(process.env.MONGODB_URI);
     const pass = payload.password;
     const notHashedPassword = pass;
     const salt = bcrypt.genSaltSync(10);

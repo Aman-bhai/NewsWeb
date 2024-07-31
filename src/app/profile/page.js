@@ -140,16 +140,13 @@ export default function ProfilePage() {
                   alt="User Avatar"
                 />
               ) : (
-                <div className="bg-gray-200 rounded-full w-28 h-28 flex items-center justify-center mb-4">
-                  <svg
-                    className="w-12 h-12 text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 110-16 8 8 0 010 16zm0-14a6 6 0 100 12 6 6 0 000-12zm0 9a3 3 0 110-6 3 3 0 010 6z"></path>
-                  </svg>
-                </div>
+                <Image
+                className="rounded-full w-28 h-28 mb-4"
+                src={`https://avatar.iran.liara.run/username?username=${encodeURIComponent(user?.email)}`}
+                width={120}
+                height={120}
+                alt="User Avatar"
+              />
               )}
             </div>
           </div>

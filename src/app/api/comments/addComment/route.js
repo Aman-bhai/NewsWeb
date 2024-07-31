@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import { Comments } from "@/app/models/Comment.modal";
 
 export async function POST(req) {
-    mongoose.connect(process.env.mongoURL).then(() => {
+    mongoose.connect(process.env.MONGODB_URI).then(() => {
         console.log("server is connected with database")
     }).catch((err) => {
         console.log(err)

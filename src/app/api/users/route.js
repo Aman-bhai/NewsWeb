@@ -2,7 +2,7 @@ import { User } from "../../models/User.model";
 import mongoose from "mongoose";
 
 export async function GET(req) {
-  await mongoose.connect(process.env.mongoURL);
+  await mongoose.connect(process.env.MONGODB_URI);
 
   const users = await User.find({}).select('name email').lean();
 

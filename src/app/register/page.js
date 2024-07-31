@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { FaGoogle } from "react-icons/fa";
 
 const page = () => {
   const [email, setemail] = useState("");
