@@ -6,7 +6,7 @@ import Provider from '../app/components/Provider';
 import Navbar from '../app/components/Navbar';
 import { Toaster } from 'react-hot-toast';
 import { NewsProvider } from '@/app/context/NewsContext';
-import ProgressBar from '@/app/components/Progressbar';
+import ProgressBar from '../app/components/ProgressBar';
 
 const inter = Inter({ subsets: ['latin'] });
 
