@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import PopUp from "./PopUp";
 import toast from "react-hot-toast";
 import Spinner from "./Spinner";
+import Link from "next/link";
 
 const NewsDetailCard3 = () => {
   const { selectedNews } = useNews();
@@ -52,7 +53,16 @@ const NewsDetailCard3 = () => {
     try {
       const response = await fetch("/api/news", {
         method: "POST",
-        body: JSON.stringify({title,content,image,url,desc,src_name,author,email }),
+        body: JSON.stringify({
+          title,
+          content,
+          image,
+          url,
+          desc,
+          src_name,
+          author,
+          email,
+        }),
         headers: { "Content-Type": "application/json" },
       });
       if (!response.ok) throw new Error("Failed to save news.");
@@ -201,11 +211,19 @@ const NewsDetailCard3 = () => {
         </div>
       </div>
       <div className="mt-6 p-6 border-t bg-white rounded-lg shadow-md">
-
         <div>
-          <h3 className="text-xl font-semibold mb-4 text-gray-800">
-            Add a Comment
-          </h3>
+          <div className="flex justify-between items-center my-4">
+            <h3 className="text-xl font-semibold text-gray-800">
+              Add a Comment
+            </h3>
+            <Link
+              href="/userComment"
+              className="bg-amber-400 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 shadow-md"
+            >
+              Go to Comment Page
+            </Link>
+          </div>
+
           <textarea
             className="w-full h-24 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mb-4"
             placeholder="Write your comment here..."
