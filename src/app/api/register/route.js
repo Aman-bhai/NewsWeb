@@ -1,4 +1,3 @@
-// import { userModel } from "@/app/models/User";
 import mongoose from "mongoose";
 import { User } from "../../models/User.model";
 import bcrypt from "bcrypt"

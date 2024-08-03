@@ -1,14 +1,10 @@
-import React, { Component } from 'react'
+"use client"
+import React from "react";
 
-export class Spinner extends Component {
-  render() {
-    return (
-      <div className='text-center flex justify-between items-center'>
-        <img src={"/giphy.gif"} alt="loading" className='h-52 mx-auto' />
-      </div>
-    )
-  }
-}
+const Spinner = () => (
+  <div className="flex items-center justify-center mt-6 min-h-screen">
+    <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
+  </div>
+);
 
-export default Spinner
-
+export default Spinner;
