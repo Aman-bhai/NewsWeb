@@ -7,7 +7,6 @@ import bcrypt from "bcrypt";
 import mongoose from "mongoose";
 import { User } from '../../../models/User.model';
 
-// Define NextAuth configuration options
 const authOptions = {
   secret: process.env.SECRET,
   adapter: MongoDBAdapter(clientPromise),
@@ -72,8 +71,6 @@ const authOptions = {
   }
 };
 
-// Create a handler for NextAuth
 const handler = NextAuth(authOptions);
 
-// Export the handler as GET and POST
-export default handler;
+export { handler as GET, handler as POST };
