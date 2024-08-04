@@ -1,8 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
 import Image from "next/image";
 
 const SiteUserPage = () => {
+=======
+import Image from "next/Image"
+const SiteUser = () => {
+>>>>>>> 55fe4053d60bdea118e1f4642e999dbafe866b5b
   useEffect(() => {
     fetch("/api/users").then((response) => {
       response.json().then((data) => {
@@ -26,6 +31,7 @@ const SiteUserPage = () => {
             amet pariatur, tempore molestiae a harum debitis aliquid quidem?
           </p>
           <div className="flex flex-row flex-wrap-reverse justify-center">
+<<<<<<< HEAD
             {User.map((item, index) => (
               <div
                 className="flex flex-col justify-center m-8 text-center"
@@ -40,6 +46,13 @@ const SiteUserPage = () => {
                   width={96}
                   height={96}
                   style={{ objectFit: "cover" }}
+=======
+			{User.map((item,index)=>(<div className="flex flex-col justify-center m-8 text-center" key={index}>
+              <Image
+                alt=""
+                className="self-center flex-shrink-0 w-24 h-24 mb-4 bg-center bg-cover rounded-full dark:bg-blue-500"
+                src={`https://avatar.iran.liara.run/username?username=${encodeURIComponent(item.email)}`} width={200} height={200}
+>>>>>>> 55fe4053d60bdea118e1f4642e999dbafe866b5b
                 />
                 <p className="text-xl font-semibold leading-tight">
                   {item.name ? item.name : "N/A"}
@@ -57,4 +70,8 @@ const SiteUserPage = () => {
   );
 };
 
+<<<<<<< HEAD
 export default SiteUserPage;
+=======
+export default SiteUser;
+>>>>>>> 55fe4053d60bdea118e1f4642e999dbafe866b5b
