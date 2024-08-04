@@ -88,7 +88,6 @@ const NewsDetailCard3 = () => {
       });
 
       if (response.ok) {
-        const data = await response.json();
         setComment("");
         toast.success("Comment successfully posted!");
       } else {
@@ -148,7 +147,7 @@ const NewsDetailCard3 = () => {
 
   if (!selectedNews) {
     return (
-      <div className="text-center mx-auto">
+      <div className="flex justify-center items-center min-h-screen">
         <Spinner />
       </div>
     );
@@ -166,43 +165,49 @@ const NewsDetailCard3 = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6 bg-gray-100 rounded-lg shadow-lg">
+    <div className="container mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
       <div className="flex flex-col items-center">
-        <div className="relative w-full max-w-screen-md h-80 flex justify-center items-center mb-6">
+        <div className="relative w-full max-w-screen-lg h-80 flex justify-center items-center mb-8">
           <img
-            src={!image ? "/assets/general_news.webp" : image}
+            src={image || "/assets/general_news.webp"}
             alt="News"
-            className="w-full h-full object-cover rounded-lg shadow-md"
+            className="w-full h-full object-cover rounded-lg shadow-lg"
           />
         </div>
 
-        <div className="flex flex-col items-start w-full max-w-screen-md">
-          <h1 className="text-4xl font-bold mb-4 text-blue-900">{title}</h1>
-          <p className="text-gray-700 mb-4">{desc}</p>
-          <p className="text-gray-500 mb-4">{content}</p>
-          <div className="mb-4">
-            <p className="text-sm text-gray-500">
+        <div className="flex flex-col items-start w-full max-w-screen-lg space-y-4">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-200">
+            {title}
+          </h1>
+          <p className="text-lg text-gray-700 dark:text-gray-300">{desc}</p>
+          <p className="text-base text-gray-500 dark:text-gray-300">{content}</p>
+          <div className="mt-4">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               Author:{" "}
-              <span className="font-medium text-gray-800">{author}</span>
+              <span className="font-medium text-gray-800 dark:text-gray-300">
+                {author}
+              </span>
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
               Published on:{" "}
-              <span className="font-medium text-gray-800">{date}</span>
+              <span className="font-medium text-gray-800 dark:text-gray-300">
+                {date}
+              </span>
             </p>
           </div>
-          <div className="flex items-center space-x-4 mb-6">
+          <div className="flex items-center space-x-4 mt-6">
             <button
               onClick={() => window.open(url, "_blank")}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               Read more
             </button>
             <button
               onClick={handleLike}
-              className={`px-4 py-2 rounded-md text-sm focus:outline-none focus:ring-2 ${
+              className={`px-5 py-2 rounded-md text-sm focus:outline-none focus:ring-2 ${
                 isLiked
-                  ? "bg-red-500 text-white hover:bg-red-600 focus:ring-red-500"
-                  : "bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-yellow-500"
+                  ? "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500"
+                  : "bg-yellow-600 text-white hover:bg-yellow-700 focus:ring-yellow-500"
               }`}
             >
               {isLiked ? "Unlike" : "Like"}
@@ -210,33 +215,31 @@ const NewsDetailCard3 = () => {
           </div>
         </div>
       </div>
-      <div className="mt-6 p-6 border-t bg-white rounded-lg shadow-md">
-        <div>
-          <div className="flex justify-between items-center my-4">
-            <h3 className="text-xl font-semibold text-gray-800">
-              Add a Comment
-            </h3>
-            <Link
-              href="/userComment"
-              className="bg-amber-400 text-white px-4 py-2 rounded-md transition duration-300 ease-in-out hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 shadow-md"
-            >
-              Go to Comment Page
-            </Link>
-          </div>
-
-          <textarea
-            className="w-full h-24 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mb-4"
-            placeholder="Write your comment here..."
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          ></textarea>
-          <button
-            className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
-            onClick={postCommentBtn}
+      <div className="mt-8 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+            Add a Comment
+          </h3>
+          <Link
+            href="/userComment"
+            className="bg-amber-500 text-white px-4 py-2 rounded-md hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500"
           >
-            Post Comment
-          </button>
+            Go to Comment Page
+          </Link>
         </div>
+
+        <textarea
+          className="w-full h-28 p-3 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 mb-4 dark:bg-gray-900 dark:text-gray-200"
+          placeholder="Write your comment here..."
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        ></textarea>
+        <button
+          className="bg-green-600 text-white px-5 py-2 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+          onClick={postCommentBtn}
+        >
+          Post Comment
+        </button>
       </div>
     </div>
   );

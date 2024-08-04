@@ -71,7 +71,7 @@ const Navbar = () => {
   }, [router.asPath]);
 
   return (
-    <nav className="bg-gray-300 shadow">
+    <nav className="bg-gray-300 dark:bg-gray-900 shadow">
       <div
         className="flex items-center justify-between flex-col lg:flex-row lg:flex-wrap py-4 lg:px-12"
         id="imp"
@@ -81,18 +81,19 @@ const Navbar = () => {
             className="flex items-center mr-6"
             style={{ margin: "marginAuto" }}
           >
-            <Link href="/">
+            <button onClick={()=>router.push("/")}>
               <img
                 src="/assets/svg/logo-no-background.svg"
                 alt="Logo"
                 className="h-8 rounded-md block"
               />
-            </Link>
+            </button>
 
             <div className="relative ml-4" ref={dropdownRef}>
               <button
                 onClick={() => setDropdown(!dropdown)}
-                className="font-semibold text-xl tracking-tight cursor-pointer bg-gray-200 px-3 py-2 rounded-md text-gray-800 focus:outline-none"
+                className="font-semibold text-xl tracking-tight cursor-pointer bg-gray-200 px-3 py-2 rounded-md text-slate-900
+                dark:text-slate-900 focus:outline-none"
               >
                 NewsDaily
               </button>
@@ -170,7 +171,7 @@ const Navbar = () => {
                 <Link
                   key={category}
                   href={`/category/${category}`}
-                  className="block mt-4 lg:mt-0 md:inline-block hover:text-gray-700 px-4 py-2 rounded hover:bg-gray-200 mr-2"
+                  className="block mt-4 lg:mt-0 md:inline-block text-slate-900 dark:text-slate-400 hover:text-gray-700 px-4 py-2 rounded hover:bg-gray-200 mr-2"
                   onClick={closeMenu}
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}

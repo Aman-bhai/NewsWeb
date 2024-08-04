@@ -42,15 +42,15 @@ const Contact = (props) => {
   };
 
   return (
-    <div className="my-6">
-      <div className="grid sm:grid-cols-2 items-center gap-16 p-8  mx-auto max-w-4xl bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md text-[#333]">
+    <div className="my-6 dark:bg-gray-800 dark:text-gray-300">
+      <div className="grid sm:grid-cols-2 items-center gap-16 p-8  mx-auto max-w-4xl bg-white dark:bg-gray-700 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] dark:shadow-[0_2px_10px_-3px_rgba(105,105,105)]  rounded-md text-[#333]">
         <div>
-          <h1 className="text-3xl font-extrabold ">Contact Us</h1>
-          <p className="text-sm mt-3">
+          <h1 className="text-3xl font-extrabold dark:text-gray-400 ">Contact Us</h1>
+          <p className="text-sm mt-3 dark:text-gray-400">
             Please Don't Hesitate and Feel Free To Contact Us.
           </p>
           <div className="mt-12">
-            <h2 className="text-lg font-extrabold">Email</h2>
+            <h2 className="text-lg font-extrabold dark:text-gray-400">Email</h2>
             <ul className="mt-3">
               <li className="flex items-center">
                 <div className="h-10 w-10 rounded-full flex items-center justify-center shrink-0">
@@ -69,7 +69,7 @@ const Contact = (props) => {
                 </div>
                 <Link
                   href="mailto:amansoni18860@gmail.com"
-                  className="text-sm ml-3 text-blue-500"
+                  className="text-sm ml-3 dark:text-gray-400"
                 >
                   <small className="block">Mail</small>
                   <strong>amansoni18860@gmail.com</strong>
@@ -78,7 +78,7 @@ const Contact = (props) => {
             </ul>
           </div>
           <div className="mt-12">
-            <h2 className="text-lg font-extrabold">Socials</h2>
+            <h2 className="text-lg font-extrabold dark:text-gray-400">Socials</h2>
             <ul className="flex mt-3 space-x-4">
               <li className="bg-[#e6e6e6cf] dark:bg-indigo-200 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
                 <Link
@@ -111,14 +111,14 @@ const Contact = (props) => {
           <input
             type="text"
             placeholder="Name"
-            className="w-full rounded-md py-2.5 px-4 border text-sm"
+            className="w-full rounded-md py-2.5 px-4 border text-sm dark:bg-gray-400 dark:text-gray-950 dark:outline-none dark:placeholder-gray-700"
             value={name}
             onChange={(e) => setname(e.target.value)}
           />
           <input
             type="email"
             placeholder="Email"
-            className="w-full rounded-md py-2.5 px-4 border text-sm"
+            className="w-full rounded-md py-2.5 px-4 border text-sm dark:bg-gray-400 dark:text-gray-950 dark:outline-none dark:placeholder-gray-700"
             value={email}
             onChange={(e) => setemail(e.target.value)}
           />
@@ -126,7 +126,7 @@ const Contact = (props) => {
           <textarea
             placeholder="Message"
             rows="6"
-            className="w-full rounded-md px-4 border text-sm pt-2.5"
+            className="w-full rounded-md px-4 border text-sm pt-2.5 dark:bg-gray-400 dark:text-gray-950 dark:outline-none dark:placeholder-gray-700"
             value={message}
             onChange={(e) => setmessage(e.target.value)}
           ></textarea>

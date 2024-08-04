@@ -78,7 +78,7 @@ const Container = (props) => {
 
   return (
     <>
-      <h2 className="font-semibold text-3xl text-center mb-10 pt-10 bg-gee">
+      <h2 className="font-semibold text-3xl text-center text-slate-900 dark:text-slate-200 mb-10 pt-10 ">
         NewsDaily - Top News Headlines
       </h2>
 
@@ -100,7 +100,7 @@ const Container = (props) => {
         ))}
       </div>
       {!loading && (
-        <div className="flex justify-between w-fit mx-auto my-10">
+        <div className="flex justify-between w-fit mx-auto py-10">
           <button
             disabled={page <= 1}
             type="button"

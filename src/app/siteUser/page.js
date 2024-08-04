@@ -13,12 +13,12 @@ const page = () => {
 
   return (
     <>
-      <section className="py-6 bg-gray-100 text-gray-800 h-screen">
+      <section className="py-6 bg-gray-100 text-gray-800  dark:bg-gray-800 dark:text-gray-300 min-h-screen">
         <div className="container flex flex-col items-center justify-center p-4 mx-auto space-y-8 sm:p-10">
           <h1 className="text-4xl font-bold leading-none text-center sm:text-5xl">
             Our Site Users
           </h1>
-          <p className="max-w-2xl text-center text-gray-600">
+          <p className="max-w-2xl text-center text-gray-600 dark:text-gray-400">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam
             suscipit iure sit enim id voluptates expedita fuga, ea eos in nam
             amet pariatur, tempore molestiae a harum debitis aliquid quidem?
@@ -33,7 +33,7 @@ const page = () => {
               <p className="text-xl font-semibold leading-tight">
                 {item.name?item.name:"N/A"}
               </p>
-              <p className="dark:text-gray-600"> {item.email?item.email:"N/A"}</p>
+              <p className="dark:dark:text-gray-400 text-gray-600"> {item.email?item.email:"N/A"}</p>
             </div>))}
 		  </div>
         </div>

@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useNews } from '@/app/context/NewsContext';
 
 const Card = (props) => {
-  const { image, desc, title, date, author, url, src_name,content, color } = props;
+  const { image, desc, title, date, author, url, src_name, color } = props;
   const router = useRouter();
   const { setSelectedNews } = useNews();
 
@@ -16,13 +16,13 @@ const Card = (props) => {
   ];
 
   const handleClick = () => {
-    setSelectedNews({ title, image, desc, date, author, url, src_name,content });
+    setSelectedNews({ title, image, desc, date, author, url, src_name });
     router.push('/newsDetails');
   };
 
   return (
     <div
-      className="max-w-sm rounded overflow-hidden shadow-lg md:mx-2 my-2 cursor-pointer"
+      className="relative max-w-sm overflow-hidden shadow-lg bg-white dark:bg-gray-700 md:mx-2 my-2 cursor-pointer bg-opacity-80 dark:bg-opacity-90 backdrop-blur-md border border-gray-200 dark:border-gray-600 rounded-md transition-transform transform hover:scale-105"
       onClick={handleClick}
     >
       <div className="flex justify-end">
@@ -38,15 +38,15 @@ const Card = (props) => {
 
       <div className="img flex items-center justify-center">
         <img
-          className="h-64"
+          className="h-64 w-full object-cover"
           src={!image ? "/assets/general_news.webp" : image}
           alt="NewsProfile"
         />
       </div>
 
-      <div className="px-6 py-4">
+      <div className="px-6 py-4 text-slate-900 dark:text-white">
         <div className="font-bold text-lg mb-2">{title}</div>
-        <p className="text-gray-700 text-sm mb-4">
+        <p className="text-slate-900 dark:text-gray-300 text-sm mb-4">
           {desc.length <= 100 ? desc : `${desc.substring(0, 100)}...`}
         </p>
 
@@ -68,11 +68,12 @@ const Card = (props) => {
           Read More
         </button>
       </div>
+
       <div className="px-6 pt-4 pb-2 flex space-x-5 justify-between">
-        <span className="inline-block py-1 text-xs font-semibold mr-2 mb-2">
-          PublishedAt: {date.substring(0, 10)}
+        <span className="inline-block py-1 text-xs font-semibold mr-2 mb-2 dark:text-gray-300">
+          Published At: {date.substring(0, 10)}
         </span>
-        <span className="inline-block py-1 text-xs font-semibold mr-2 mb-2 w-fit">
+        <span className="inline-block py-1 text-xs font-semibold mr-2 mb-2 w-fit dark:text-gray-300">
           {author}
         </span>
       </div>

@@ -44,21 +44,21 @@ const Page = () => {
       {status === "authenticated" && loggedIn ? (
         <PopUp  title="Already Logged In!" text="Go To HomePage" link="/" linkText="Click" />
       ) : (
-        <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gray-200 dark:bg-gray-800 dark:text-gray-300 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-md">
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-gray-300">
               Sign in to your account
             </h2>
-            <p className="mt-2 text-center text-sm text-gray-600 max-w">
+            <p className="mt-2 text-center text-sm text-gray-600 max-w dark:text-gray-400">
               {" "}Or
-              <Link href="/register" className="font-medium text-blue-600 hover:text-blue-500 pl-1">
+              <Link href="/register" className="font-medium text-blue-600 hover:text-blue-500 pl-1 dark:text-gray-300 dark:hover:text-gray-100 ">
                 create an account
               </Link>
             </p>
           </div>
 
           <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-            <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <div className="bg-white dark:bg-gray-400 py-8 px-4 shadow sm:rounded-lg sm:px-10">
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -112,10 +112,10 @@ const Page = () => {
               <div className="mt-4">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-300"></div>
+                    <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
                   </div>
                   <div className="relative flex justify-center text-sm mb-2">
-                    <span className="px-2 bg-gray-100 text-gray-500">
+                    <span className="px-2 bg-gray-100 dark:bg-gray-400 text-gray-500 dark:text-gray-700">
                       Or continue with
                     </span>
                   </div>

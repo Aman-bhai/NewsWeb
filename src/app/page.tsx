@@ -1,13 +1,9 @@
-import Container from "@/app/components/Container"
-
-
+import Container from "@/app/components/Container";
 
 export default function Home() {
-  
   return (
-  <main >
-    <Container API={process.env.API} category={"general"}/>
-  </main>
+    <main className="bg-gray-100 dark:bg-gray-800 min-h-screen">
+      <Container API={process.env.API} category={"general"} />
+    </main>
   );
 }
-

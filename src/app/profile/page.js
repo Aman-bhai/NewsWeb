@@ -101,18 +101,18 @@ export default function ProfilePage() {
   }
 
   return (
-    <section className="min-h-screen mx-auto p-4 bg-gray-100">
+    <section className="min-h-screen mx-auto p-4 bg-gray-100 dark:bg-gray-800 text-slate-900 dark:text-slate-200">
       <div className="max-w-2xl mx-auto mt-8">
         <h1 className="text-3xl font-bold mx-auto w-fit my-8">User's Profile</h1>
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSave}>
+        <form className="bg-white dark:bg-gray-700 dark:rounded-md dark:text-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSave}>
           <div className="flex items-center mb-4">
             <div className="w-1/2 pr-2 flex flex-col">
               <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">
+                <label className="block text-gray-700 dark:text-gray-400 text-sm font-bold mb-2">
                   First and last name
                 </label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-400 dark:placeholder-gray-900"
                   type="text"
                   placeholder="First and last name"
                   value={userName}
@@ -120,9 +120,9 @@ export default function ProfilePage() {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                <label className="block text-gray-700 dark:text-gray-400 text-sm font-bold mb-2">Email</label>
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-900 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-500 dark:placeholder-gray-400"
                   type="email"
                   disabled={true}
                   value={user?.email || ''}
@@ -152,9 +152,9 @@ export default function ProfilePage() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Phone</label>
+            <label className="block text-gray-700 dark:text-gray-400 text-sm font-bold mb-2">Phone</label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-400 dark:placeholder-gray-400"
               type="tel"
               placeholder="Phone number"
               value={phone || ''}
@@ -162,9 +162,9 @@ export default function ProfilePage() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Street address</label>
+            <label className="block text-gray-700 dark:text-gray-400 text-sm font-bold mb-2">Street address</label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-400 dark:placeholder-gray-400"
               type="text"
               placeholder="Street address"
               value={streetAddress || ''}
@@ -173,9 +173,9 @@ export default function ProfilePage() {
           </div>
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-gray-700 text-sm font-bold mb-2">Postal code</label>
+              <label className="block text-gray-700 dark:text-gray-400 text-sm font-bold mb-2">Postal code</label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-400 dark:placeholder-gray-400"
                 type="text"
                 placeholder="Postal code"
                 value={postalCode || ''}
@@ -183,9 +183,9 @@ export default function ProfilePage() {
               />
             </div>
             <div>
-              <label className="block text-gray-700 text-sm font-bold mb-2">City</label>
+              <label className="block text-gray-700 dark:text-gray-400 text-sm font-bold mb-2">City</label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-400 dark:placeholder-gray-400"
                 type="text"
                 placeholder="City"
                 value={city || ''}
@@ -194,9 +194,9 @@ export default function ProfilePage() {
             </div>
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2">Country</label>
+            <label className="block text-gray-700 dark:text-gray-400 text-sm font-bold mb-2">Country</label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-400 dark:placeholder-gray-400"
               type="text"
               placeholder="Country"
               value={country || ''}
@@ -205,7 +205,7 @@ export default function ProfilePage() {
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline dark:bg-gray-400 dark:placeholder-gray-400"
               type="submit"
             >
               Save
