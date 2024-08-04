@@ -9,9 +9,9 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { IoSend } from "react-icons/io5";
 
 const Contact = (props) => {
-  const [name, setname] = useState("");
-  const [email, setemail] = useState("");
-  const [message, setmessage] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,22 +32,22 @@ const Contact = (props) => {
 
     await toast.promise(promise, {
       loading: "Sending...",
-      success: "Message is Successfully Sended",
+      success: "Message is successfully sent",
       error: "Error: Empty name or invalid email format",
     });
 
-    setname("");
-    setemail("");
-    setmessage("");
+    setName("");
+    setEmail("");
+    setMessage("");
   };
 
   return (
     <div className="my-6 dark:bg-gray-800 dark:text-gray-300">
-      <div className="grid sm:grid-cols-2 items-center gap-16 p-8  mx-auto max-w-4xl bg-white dark:bg-gray-700 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] dark:shadow-[0_2px_10px_-3px_rgba(105,105,105)]  rounded-md text-[#333]">
+      <div className="grid sm:grid-cols-2 items-center gap-16 p-8 mx-auto max-w-4xl bg-white dark:bg-gray-700 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] dark:shadow-[0_2px_10px_-3px_rgba(105,105,105)] rounded-md text-[#333]">
         <div>
-          <h1 className="text-3xl font-extrabold dark:text-gray-400 ">Contact Us</h1>
+          <h1 className="text-3xl font-extrabold dark:text-gray-400">Contact Us</h1>
           <p className="text-sm mt-3 dark:text-gray-400">
-            Please Don't Hesitate and Feel Free To Contact Us.
+            Please don&apos;t hesitate and feel free to contact us.
           </p>
           <div className="mt-12">
             <h2 className="text-lg font-extrabold dark:text-gray-400">Email</h2>
@@ -63,7 +63,6 @@ const Contact = (props) => {
                   >
                     <path
                       d="M434.146 59.882H44.912C20.146 59.882 0 80.028 0 104.794v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159L239.529 264.631 39.173 90.982a14.902 14.902 0 0 1 5.738-1.159zm0 299.411H44.912c-8.26 0-14.971-6.71-14.971-14.971V122.615l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"
-                      data-original="#000000"
                     />
                   </svg>
                 </div>
@@ -83,7 +82,7 @@ const Contact = (props) => {
               <li className="bg-[#e6e6e6cf] dark:bg-indigo-200 h-10 w-10 rounded-full flex items-center justify-center shrink-0">
                 <Link
                   href={`${props.WHATSAPP}`}
-                  className="cursor-pointer  text-lg rounded-full "
+                  className="cursor-pointer text-lg rounded-full"
                 >
                   <FaSquareWhatsapp className="h-6 w-6 text-blue-500 hover:text-blue-700" />
                 </Link>
@@ -91,7 +90,7 @@ const Contact = (props) => {
               <li className="h-10 w-10 rounded-full flex items-center justify-center shrink-0 bg-[#e6e6e6cf] dark:bg-indigo-200">
                 <Link
                   href={`${props.LINKEDIN}`}
-                  className="cursor-pointer  text-lg rounded-full"
+                  className="cursor-pointer text-lg rounded-full"
                 >
                   <FaLinkedin className="h-6 w-6 text-blue-500 hover:text-blue-700" />
                 </Link>
@@ -107,28 +106,27 @@ const Contact = (props) => {
             </ul>
           </div>
         </div>
-        <form className="ml-auo space-y-4">
+        <form className="ml-auto space-y-4">
           <input
             type="text"
             placeholder="Name"
             className="w-full rounded-md py-2.5 px-4 border text-sm dark:bg-gray-400 dark:text-gray-950 dark:outline-none dark:placeholder-gray-700"
             value={name}
-            onChange={(e) => setname(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
           <input
             type="email"
             placeholder="Email"
             className="w-full rounded-md py-2.5 px-4 border text-sm dark:bg-gray-400 dark:text-gray-950 dark:outline-none dark:placeholder-gray-700"
             value={email}
-            onChange={(e) => setemail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
-
           <textarea
             placeholder="Message"
             rows="6"
             className="w-full rounded-md px-4 border text-sm pt-2.5 dark:bg-gray-400 dark:text-gray-950 dark:outline-none dark:placeholder-gray-700"
             value={message}
-            onChange={(e) => setmessage(e.target.value)}
+            onChange={(e) => setMessage(e.target.value)}
           ></textarea>
           <button
             type="button"
@@ -138,7 +136,7 @@ const Contact = (props) => {
             <div className="flex justify-center items-center">
               <span className="mx-2">Send</span>
               <IoSend />
-            </div>{" "}
+            </div>
           </button>
         </form>
       </div>
