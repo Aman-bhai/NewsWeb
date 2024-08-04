@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import NProgress from 'nprogress';
@@ -6,8 +7,8 @@ import 'nprogress/nprogress.css';
 
 NProgress.configure({
   showSpinner: false,
-  speed: 500, 
-  minimum: 0.2, 
+  speed: 500,
+  minimum: 0.2,
 });
 
 const useRouteChange = () => {
@@ -24,14 +25,14 @@ const useRouteChange = () => {
       setTimeout(() => {
         NProgress.done();
         setIsLoading(false);
-      }, 500); 
+      }, 500);
     };
 
     handleStart();
 
     const timer = setTimeout(() => {
       handleComplete();
-    }, 1000); 
+    }, 1000);
 
     return () => {
       clearTimeout(timer);
