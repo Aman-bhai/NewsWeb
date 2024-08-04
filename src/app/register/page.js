@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 
-const page = () => {
+const RegisterPage = () => {
   const [email, setemail] = useState("");
 
   const [password, setpassword] = useState("");
@@ -164,4 +164,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default RegisterPage;
