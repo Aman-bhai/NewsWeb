@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-const page = () => {
+const SiteUserPage = () => {
   useEffect(() => {
     fetch("/api/users").then((response) => {
       response.json().then((data) => {
@@ -42,4 +42,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SiteUserPage;
