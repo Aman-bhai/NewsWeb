@@ -7,6 +7,7 @@ import { IoCloseCircle } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   const router = useRouter();
@@ -57,14 +58,13 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdown]);
-  
 
   useEffect(() => {
     setsearch("");
   }, [router.asPath]);
 
   useEffect(() => {
-    const query = new URLSearchParams(window.location.search).get('search');
+    const query = new URLSearchParams(window.location.search).get("search");
     if (query) {
       setsearch(query);
     }
@@ -81,11 +81,13 @@ const Navbar = () => {
             className="flex items-center mr-6"
             style={{ margin: "marginAuto" }}
           >
-            <button onClick={()=>router.push("/")}>
-              <img
+            <button onClick={() => router.push("/")}>
+              <Image
                 src="/assets/svg/logo-no-background.svg"
                 alt="Logo"
-                className="h-8 rounded-md block"
+                width={32}
+                height={32}
+                className="rounded-md block"
               />
             </button>
 

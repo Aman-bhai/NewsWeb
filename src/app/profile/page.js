@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import PopUp from "../components/PopUp";
+import { Image } from "next/image";
 
 export default function ProfilePage() {
   const { status } = useSession();
@@ -18,33 +19,33 @@ export default function ProfilePage() {
   const [country, setCountry] = useState('');
 
   useEffect(() => {
-    if (status === 'authenticated') {
-      fetch('/api/profile').then(response => {
-        response.json().then(data => {
-          setUser(data);
-          setUserName(data.name || '');
-          setImage(data.image || '');
-          setPhone(data.phone || '');
-          setStreetAddress(data.streetAddress || '');
-          setPostalCode(data.postalCode || '');
-          setCity(data.city || '');
-          setCountry(data.country || '');
-          setProfileFetched(true);
-        });
-      });
-    }
+    const fetchProfile = async () => {
+      if (status === 'authenticated') {
+        const response = await fetch('/api/profile');
+        const data = await response.json();
+        setUser(data);
+        setUserName(data.name || '');
+        setImage(data.image || '');
+        setPhone(data.phone || '');
+        setStreetAddress(data.streetAddress || '');
+        setPostalCode(data.postalCode || '');
+        setCity(data.city || '');
+        setCountry(data.country || '');
+        setProfileFetched(true);
+      }
+    };
+
+    fetchProfile();
   }, [status]);
 
   async function handleProfileInfoUpdate(ev, data) {
     ev.preventDefault();
-    const savingPromise = new Promise(async (resolve, reject) => {
-      const response = await fetch('/api/profile', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      if (response.ok) resolve();
-      else reject();
+    const savingPromise = fetch('/api/profile', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    }).then(response => {
+      if (!response.ok) throw new Error('Error saving profile');
     });
 
     await toast.promise(savingPromise, {
@@ -53,7 +54,6 @@ export default function ProfilePage() {
       error: 'Error saving profile',
     });
   }
-
 
   function handleAddressChange(propName, value) {
     switch (propName) {
@@ -77,7 +77,6 @@ export default function ProfilePage() {
     }
   }
 
-
   function handleSave(ev) {
     ev.preventDefault();
     handleProfileInfoUpdate(ev, {
@@ -91,7 +90,6 @@ export default function ProfilePage() {
     });
   }
 
-
   if (status === 'loading') {
     return <PopUp title="Loading..." text="Fetching profile data. Please wait." link="#" linkText="Okay" />;
   }
@@ -103,7 +101,7 @@ export default function ProfilePage() {
   return (
     <section className="min-h-screen mx-auto p-4 bg-gray-100 dark:bg-gray-800 text-slate-900 dark:text-slate-200">
       <div className="max-w-2xl mx-auto mt-8">
-        <h1 className="text-3xl font-bold mx-auto w-fit my-8">User's Profile</h1>
+        <h1 className="text-3xl font-bold mx-auto w-fit my-8">User&apos;s Profile</h1>
         <form className="bg-white dark:bg-gray-700 dark:rounded-md dark:text-gray-300 shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSave}>
           <div className="flex items-center mb-4">
             <div className="w-1/2 pr-2 flex flex-col">
@@ -141,12 +139,12 @@ export default function ProfilePage() {
                 />
               ) : (
                 <Image
-                className="rounded-full w-28 h-28 mb-4"
-                src={`https://avatar.iran.liara.run/username?username=${encodeURIComponent(user?.email)}`}
-                width={120}
-                height={120}
-                alt="User Avatar"
-              />
+                  className="rounded-full w-28 h-28 mb-4"
+                  src={`https://avatar.iran.liara.run/username?username=${encodeURIComponent(user?.email)}`}
+                  width={120}
+                  height={120}
+                  alt="User Avatar"
+                />
               )}
             </div>
           </div>
