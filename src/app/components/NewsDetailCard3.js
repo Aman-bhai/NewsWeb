@@ -8,7 +8,6 @@ import PopUp from "./PopUp";
 import toast from "react-hot-toast";
 import Spinner from "./Spinner";
 import Link from "next/link";
-import Image from "next/image";
 
 const NewsDetailCard3 = () => {
   const { selectedNews } = useNews();
@@ -169,12 +168,9 @@ const NewsDetailCard3 = () => {
     <div className="container mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
       <div className="flex flex-col items-center">
         <div className="relative w-full max-w-screen-lg h-80 flex justify-center items-center mb-8">
-          <Image
+          <img
             src={image || "/assets/general_news.webp"}
             alt="News"
-            layout="responsive"
-            width={700}
-            height={400}
             className="w-full h-full object-cover rounded-lg shadow-lg"
           />
         </div>
@@ -184,9 +180,7 @@ const NewsDetailCard3 = () => {
             {title}
           </h1>
           <p className="text-lg text-gray-700 dark:text-gray-300">{desc}</p>
-          <p className="text-base text-gray-500 dark:text-gray-300">
-            {content}
-          </p>
+          <p className="text-base text-gray-500 dark:text-gray-300">{content}</p>
           <div className="mt-4">
             <p className="text-sm text-gray-500 dark:text-gray-400">
               Author:{" "}

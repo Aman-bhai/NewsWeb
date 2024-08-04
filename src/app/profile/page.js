@@ -4,7 +4,6 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import PopUp from "../components/PopUp";
-import { Image } from "next/image";
 
 export default function ProfilePage() {
   const { status } = useSession();
@@ -130,7 +129,7 @@ export default function ProfilePage() {
             </div>
             <div className="w-1/2 pl-2 flex justify-center">
               {image ? (
-                <Image
+                <img
                   className="rounded-full w-28 h-28 mb-4"
                   src={image}
                   width={120}

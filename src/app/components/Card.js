@@ -3,8 +3,7 @@
 import classNames from "classnames";
 import { colorMap } from "@/app/utils/module";
 import { useRouter } from "next/navigation";
-import { useNews } from "@/app/context/NewsContext";
-import Image from "next/image";
+import { useNews } from '@/app/context/NewsContext';
 
 const Card = (props) => {
   const { image, desc, title, date, author, url, src_name, color } = props;
@@ -18,7 +17,7 @@ const Card = (props) => {
 
   const handleClick = () => {
     setSelectedNews({ title, image, desc, date, author, url, src_name });
-    router.push("/newsDetails");
+    router.push('/newsDetails');
   };
 
   return (
@@ -38,12 +37,10 @@ const Card = (props) => {
       </div>
 
       <div className="img flex items-center justify-center">
-        <Image
+        <img
           className="h-64 w-full object-cover"
           src={!image ? "/assets/general_news.webp" : image}
           alt="NewsProfile"
-          layout="fill"
-          objectFit="cover"
         />
       </div>
 
@@ -65,7 +62,7 @@ const Card = (props) => {
           )}
           onClick={(e) => {
             e.stopPropagation();
-            window.open(url, "_blank");
+            window.open(url, '_blank');
           }}
         >
           Read More
