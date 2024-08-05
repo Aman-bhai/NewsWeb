@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import clientPromise from "../../../utils/database";
+import clientPromise from "../../../utils/database"; 
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
 import { User, UserDocument } from '../../../models/User.model';
@@ -56,7 +56,7 @@ const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = (user as UserDocument)._id;
+        token.id = (user as UserDocument)._id.toString();
         token.email = user.email;
       }
       return token;
