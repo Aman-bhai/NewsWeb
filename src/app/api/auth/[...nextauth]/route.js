@@ -1,19 +1,20 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import clientPromise from "../../../utils/database"; 
+import clientPromise from "../../../utils/database";
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
-import { User, UserDocument } from '../../../models/User.model';
+import { User } from '../../../models/User.model';
 
-const authOptions: NextAuthOptions = {
+
+const authOptions = {
   secret: process.env.SECRET,
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
     CredentialsProvider({
       name: 'Credentials',
@@ -26,22 +27,22 @@ const authOptions: NextAuthOptions = {
         const password = credentials?.password;
 
         if (!mongoose.connection.readyState) {
-          await mongoose.connect(process.env.MONGODB_URI as string);
+          await mongoose.connect(process.env.MONGODB_URI);
         }
 
-        const user: UserDocument | null = await User.findOne({ email });
+        const user = await User.findOne({ email });
         if (!user) {
           console.log("User not found");
           return null;
         }
 
-        const passwordOk = bcrypt.compareSync(password!, user.password);
+        const passwordOk = bcrypt.compareSync(password, user.password);
         if (!passwordOk) {
           console.log("Password does not match");
           return null;
         }
 
-        console.log("User authenticated:", user);
+        console.log("User authenticated:");
         return user;
       }
     })
@@ -56,15 +57,15 @@ const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = (user as UserDocument)._id.toString();
+        token.id = user._id;
         token.email = user.email;
       }
       return token;
     },
     async session({ session, token }) {
       if (token) {
-        session.user.id = token.id as string;
-        session.user.email = token.email as string;
+        session.user.id = token.id;
+        session.user.email = token.email;
       }
       return session;
     }
