@@ -1,14 +1,15 @@
+// src/app/api/auth/[...nextauth]/route.js
+import clientPromise from "../../../utils/database";
+import bcrypt from "bcrypt";
+import mongoose from "mongoose";
+import { User } from "../../../models/User.model";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import clientPromise from "../../../utils/database";
-import bcrypt from "bcrypt";
-import mongoose from "mongoose";
-import { User } from '../../../models/User.model';
 
-
-const authOptions = {
+// Configure authentication options
+export const authOptions = {
   secret: process.env.SECRET,
   adapter: MongoDBAdapter(clientPromise),
   providers: [
@@ -17,9 +18,13 @@ const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
     CredentialsProvider({
-      name: 'Credentials',
+      name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email", placeholder: "test@example.com" },
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "test@example.com",
+        },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
@@ -44,15 +49,15 @@ const authOptions = {
 
         console.log("User authenticated:");
         return user;
-      }
-    })
+      },
+    }),
   ],
   pages: {
-    signIn: '/login',
-    error: '/auth/error',
+    signIn: "/login",
+    error: "/auth/error",
   },
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -68,10 +73,12 @@ const authOptions = {
         session.user.email = token.email;
       }
       return session;
-    }
-  }
+    },
+  },
 };
 
+// Create NextAuth handler
 const handler = NextAuth(authOptions);
 
+// Export GET and POST handlers
 export { handler as GET, handler as POST };

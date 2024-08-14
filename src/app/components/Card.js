@@ -1,9 +1,9 @@
 "use client";
 
 import classNames from "classnames";
-import { colorMap } from "@/app/utils/module";
+import { colorMap } from "../utils/module";
 import { useRouter } from "next/navigation";
-import { useNews } from '@/app/context/NewsContext';
+import { useNews } from '../context/NewsContext';
 
 const Card = (props) => {
   const { image, desc, title, date, author, url, src_name, color } = props;

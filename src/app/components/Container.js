@@ -3,7 +3,7 @@ import Card from "./Card";
 import Spinner from "./Spinner";
 import NotFound from "./NotFound"; 
 import React, { useEffect, useState } from "react";
-import { link, colorMap } from "@/app/utils/module";
+import { link, colorMap } from "../utils/module";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { useRouter } from "next/navigation";

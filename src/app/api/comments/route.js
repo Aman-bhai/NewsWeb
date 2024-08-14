@@ -1,4 +1,4 @@
-import { Comments } from "@/app/models/Comment.modal";
+import { Comments } from "../../models/Comment.modal";
 import mongoose from "mongoose"
 
 export async function GET(req){

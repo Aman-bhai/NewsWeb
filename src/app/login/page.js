@@ -4,7 +4,7 @@
 
 import React, { useState } from 'react';
 import { signIn, useSession } from 'next-auth/react';
-import PopUp from "@/app/components/PopUp";
+import PopUp from "../components/PopUp";
 import { useRouter } from 'next/navigation';
 import { FaGoogle } from "react-icons/fa";
 import Link from "next/link";

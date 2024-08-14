@@ -1,6 +1,6 @@
 import React from 'react'
-import Container from '@/app/components/Container'
-import {colscheme} from  "@/app/utils/module"
+import Container from '../../components/Container'
+import {colscheme} from  "../../utils/module"
 
 const page = ({ params }) => {
   let color=colscheme(params.category)
