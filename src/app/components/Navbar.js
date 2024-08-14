@@ -129,12 +129,12 @@ const Navbar = () => {
 
           <button
             onClick={handleHamburger}
-            className="lg:hidden flex items-center px-3 py-2 rounded text-gray-800 hover:rounded-full hover:bg-gray-200"
+            className="lg:hidden flex items-center px-3 py-2 rounded text-gray-800 hover:rounded-full hover:bg-gray-600"
           >
             {hamburger ? (
-              <IoCloseCircle className="fill-current h-5 w-5" />
+              <IoCloseCircle className="fill-current h-5 w-5 dark:text-gray-300" />
             ) : (
-              <GiHamburgerMenu className="fill-current h-5 w-5" />
+              <GiHamburgerMenu className="fill-current h-5 w-5 dark:text-gray-300" />
             )}
           </button>
         </div>
