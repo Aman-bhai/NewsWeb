@@ -14,9 +14,7 @@ export async function PUT(req) {
   if (_id) {
     filter = {_id};
   } else {
-    const session = await getServerSession(authOptions);
-    const email = session.user.email;
-    filter = {email};
+    console.log("correct it later!")
   }
 
   const user = await User.findOne(filter);
@@ -35,14 +33,7 @@ export async function GET(req) {
   let filterUser = {};
   if (_id) {
     filterUser = {_id};
-  } else {
-    const session = await getServerSession(authOptions);
-    const email = session?.user?.email;
-    if (!email) {
-      return Response.json({});
-    }
-    filterUser = {email};
-  }
+  } 
 
   const user = await User.findOne(filterUser).lean();
   const doc = await UserDetails.findOne({email:user.email}).lean();
