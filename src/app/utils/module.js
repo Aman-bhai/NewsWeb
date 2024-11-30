@@ -33,7 +33,7 @@ const colorMap = {
   };
  
 const url ={
-    url1: "https://newsapi.org/v2/top-headlines?country=in&category=",
+    url1: "https://newsapi.org/v2/top-headlines?category=",
     url2: "https://newsapi.org/v2/everything?q="
 
 }

@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 const Container = (props) => {
   const { category, API, color, pageSize = 6 } = props;
+  console.log("API",API,link.url1)
   const path = usePathname();
   const router = useRouter();
   
@@ -23,10 +24,13 @@ const Container = (props) => {
     ? link.url1
     : link.url2;
 
+
+
   const fetchedNews = async () => {
     setLoading(true);
     setNotFound(false); 
     const fetchUrl = `${url}${category}&apiKey=${API}&page=${page}&pageSize=${pageSize}`;
+    console.log("object",fetchUrl)
     try {
       const res = await fetch(fetchUrl);
       if (!res.ok) throw new Error("Network response was not ok");
