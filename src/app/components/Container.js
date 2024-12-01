@@ -7,6 +7,7 @@ import { link, colorMap } from "../utils/module";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { useRouter } from "next/navigation";
+import { article } from "../utils/Articles";
 
 const Container = (props) => {
   const { category, API, color, pageSize = 6 } = props;
@@ -30,11 +31,16 @@ const Container = (props) => {
     setLoading(true);
     setNotFound(false); 
     const fetchUrl = `${url}${category}&apiKey=${API}&page=${page}&pageSize=${pageSize}`;
-    console.log("object",fetchUrl)
     try {
       const res = await fetch(fetchUrl);
-      if (!res.ok) throw new Error("Network response was not ok");
-      const data = await res.json();
+      let data;
+      if (!res.ok) {
+        // throw new Error("Network response was not ok");
+        data=article  
+      }
+      else{
+        data = await res.json();
+      }
       
       if (data.articles.length === 0) {
         setNotFound(true); 
