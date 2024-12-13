@@ -15,7 +15,7 @@ const Card = ({ news, isOpen, settoggleCard }) => {
             {news.title}
           </h3>
           <p className="text-gray-700 dark:text-gray-300 mb-4">
-            {news.desc.length <= 50 ? news.desc : `${news.desc.substring(0, 50)}...`}
+            {news.desc && (news.desc.length <= 50 ? news.desc : `${news.desc.substring(0, 50)}...`)}
           </p>
           <button
             onClick={() => settoggleCard(isOpen ? null : news._id)}

@@ -11,7 +11,7 @@ import { article } from "../utils/Articles";
 
 const Container = (props) => {
   const { category, API, color, pageSize = 6 } = props;
-  console.log("API",API,link.url1)
+  // console.log("API",API,link.url1)
   const path = usePathname();
   const router = useRouter();
   
