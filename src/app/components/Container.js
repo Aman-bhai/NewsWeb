@@ -20,6 +20,7 @@ const Container = (props) => {
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
   const [notFound, setNotFound] = useState(false); 
+  const [showBtn, setshowBtn] = useState(true)
 
   const url = path.split("/")[1] === "category" || path.split("/")[1] === ""
     ? link.url1
@@ -35,11 +36,13 @@ const Container = (props) => {
       const res = await fetch(fetchUrl);
       let data;
       if (!res.ok) {
-        // throw new Error("Network response was not ok");
-        data=article  
+        data=article 
+        setshowBtn(false)
+
       }
       else{
         data = await res.json();
+        setshowBtn(true)
       }
       
       if (data.articles.length === 0) {
@@ -111,7 +114,7 @@ const Container = (props) => {
       </div>
       {!loading && (
         <div className="flex justify-between w-fit mx-auto py-10">
-          <button
+         {showBtn&& <button
             disabled={page <= 1}
             type="button"
             className={classNames(
@@ -127,8 +130,8 @@ const Container = (props) => {
             onClick={prevBtn}
           >
             &larr; Previous
-          </button>
-          <button
+          </button>}
+          {showBtn&&<button
             disabled={page >= Math.ceil(totalResults / pageSize)}
             type="button"
             className={classNames(
@@ -144,6 +147,7 @@ const Container = (props) => {
           >
             Next &rarr;
           </button>
+}
         </div>
       )}
     </>
